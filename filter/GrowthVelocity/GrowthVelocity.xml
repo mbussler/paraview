@@ -1,0 +1,48 @@
+<ServerManagerConfiguration>
+    <ProxyGroup name="filters">
+        <SourceProxy name="GrowthVelocity" class="vtkGrowthVelocity" label="GrowthVelocity">
+            <Documentation
+        long_help="Calculate and expose GrowthVelocity"
+        short_help="GrowthVelocity">
+            </Documentation>
+            <InputProperty
+        name="Input"
+        command="SetInputConnection">
+                <ProxyGroupDomain name="groups">
+                    <Group name="sources" />
+                    <Group name="filters" />
+                </ProxyGroupDomain>
+                <DataTypeDomain name="input_type">
+                    <DataType value="vtkDataSet" />
+                </DataTypeDomain>
+                <Documentation>
+        This property specifies the input to the GrowthVelocity filter.
+                </Documentation>
+            </InputProperty>
+
+            <DoubleVectorProperty command="SetTime"
+                            default_values="1.0"
+                            name="Time"
+                            number_of_elements="1">
+            </DoubleVectorProperty>
+
+            <IntVectorProperty command="SetBuckets"
+                            default_values="12"
+                            name="Buckets"
+                            number_of_elements="1">
+            </IntVectorProperty>
+
+            <DoubleVectorProperty command="SetRange"
+                            default_values="5000.0"
+                            name="Range"
+                            number_of_elements="1">
+            </DoubleVectorProperty>
+
+            <OutputPort name="Output" index="0" id="port0" />
+            <OutputPort name="AreaPerVelocity" index="1" id="port1"/>
+
+        </SourceProxy>
+
+    </ProxyGroup>
+    <!-- End Filters Group -->
+</ServerManagerConfiguration>

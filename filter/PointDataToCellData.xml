@@ -1,0 +1,66 @@
+    <!-- ==================================================================== -->
+    <SourceProxy class="vtkPointDataToCellData"
+                 label="Point Data to Cell Data"
+                 name="PointDataToCellData">
+      <Documentation long_help="Create cell attributes by averaging point attributes."
+                     short_help="Convert point data to cell data.">The Point
+                     Data to Cell Data filter averages the values of the point
+                     attributes of the points of a cell to compute cell
+                     attributes. This filter operates on any type of dataset,
+                     and the output dataset is the same type as the
+                     input.</Documentation>
+      <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet" />
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="point"
+                          name="input_array" />
+        <FixedTypeDomain name="fixed_type" />
+        <Documentation>This property specifies the input to the Point Data to
+        Cell Data filter.</Documentation>
+      </InputProperty>
+      <IntVectorProperty command="SetPassPointData"
+                         default_values="0"
+                         name="PassPointData"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>The value of this property controls whether the input
+        point data will be passed to the output. If set to 1, then the input
+        point data is passed through to the output; otherwise, only generated
+        cell data is placed into the output.</Documentation>
+      </IntVectorProperty>
+      <!-- End PointDataToCellData -->
+    </SourceProxy>
+    <!--
+  <SourceProxy
+      name="QuadraturePointStatistics"
+      class="vtkQuadraturePointStatistics"
+      label="Quadrature Point Statistics">
+
+    <Documentation
+        long_help="Compute basics statistics over data fields interpolated to quadrature points."
+        short_help="Compute basics statistics over data fields interpolated to quadrature points.">
+        "Compute basics statistics over data fields interpolated to quadrature points."
+    </Documentation>
+
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+
+      <ProxyGroupDomain name="groups">
+        <Group name="sources"/>
+        <Group name="filters"/>
+      </ProxyGroupDomain>
+
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkUnstructuredGrid"/>
+      </DataTypeDomain>
+      <Documentation>This property specifies the input of the filter.</Documentation>
+    </InputProperty>
+  </SourceProxy>
+   ############################################################################ -->

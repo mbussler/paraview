@@ -1,0 +1,66 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ==================================================================== -->
+    <SourceProxy class="ImplicitTetClip"
+                 name="ImplicitTetClip"
+                 label="Implicit TetMesh Clip">
+                 
+      <InputProperty command="SetInputConnection"
+                     name="Input"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkUnstructuredGrid" />
+        </DataTypeDomain>
+      </InputProperty>
+      
+      <InputProperty command="SetInputConnection"
+                     name="ClipPolygon"
+                     port_index="1">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+      </InputProperty>
+      <IntVectorProperty command="SetInsideOut"
+                         default_values="0"
+                         name="InsideOut"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If this property is set to 0, the clip filter will
+        return that portion of the dataset that lies within the clip function.
+        If set to 1, the portions of the dataset that lie outside the clip
+        function will be returned instead.</Documentation>
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty
+          name="ClipDistance"
+          command="SetClipDistance"
+          number_of_elements="1"
+          default_values="0.0">
+      </DoubleVectorProperty>
+      
+      <DoubleVectorProperty
+          name="Tolerance"
+          command="SetTolerance"
+          number_of_elements="1"
+          default_values="0.001">
+      </DoubleVectorProperty>
+
+      <IntVectorProperty name="ClipByCellEdges"
+                         command="SetClipByCellEdges"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+      <!-- End Clip -->
+    </SourceProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

@@ -1,0 +1,27 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="CellSize" class="vtkCellSize" label="CellSize">
+    <Documentation
+        long_help="Calculate and expose CellSize"
+        short_help="CellSize">
+    </Documentation>
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet" />
+      </DataTypeDomain>
+      <Documentation>
+        This property specifies the input to the CellSize filter.
+      </Documentation>
+    </InputProperty>
+  
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

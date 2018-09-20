@@ -1,0 +1,21 @@
+diff --git "a/C:\\Users\\bussleml\\AppData\\Local\\Temp\\TortoiseGit\\vtkBE54.tmp\\vtkAbstractInterpolatedVelocityField-ebe9ef7-left.h" "b/H:\\src\\ParaView-src\\VTK\\Filters\\FlowPaths\\vtkAbstractInterpolatedVelocityField.h"
+index b25c0c5..da5c771 100644
+--- "a/C:\\Users\\bussleml\\AppData\\Local\\Temp\\TortoiseGit\\vtkBE54.tmp\\vtkAbstractInterpolatedVelocityField-ebe9ef7-left.h"
++++ "b/H:\\src\\ParaView-src\\VTK\\Filters\\FlowPaths\\vtkAbstractInterpolatedVelocityField.h"
+@@ -173,6 +173,8 @@ public:
+   int GetLastWeights( double * w );
+   int GetLastLocalCoordinates( double pcoords[3] );
+ 
++  void SetLastDirection( double dir[3]);
++
+ protected:
+   vtkAbstractInterpolatedVelocityField();
+   ~vtkAbstractInterpolatedVelocityField();
+@@ -197,6 +199,7 @@ protected:
+   vtkGenericCell * Cell;
+   vtkGenericCell * GenCell; // the current cell
+ 
++  double lastStepDirection[3];
+ 
+   // Description:
+   // Set the name of a specific vector to be interpolated.

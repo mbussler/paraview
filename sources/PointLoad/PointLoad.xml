@@ -1,0 +1,31 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="sources">
+   <SourceProxy name="Point Load" class="vtkPointLoad">
+     <DoubleVectorProperty
+        name="LoadValue"
+        command="SetLoadValue"
+        default_values="100"
+        number_of_elements="1">
+     </DoubleVectorProperty>
+      <IntVectorProperty
+        name="ComputeEffectiveStress"
+        command="SetComputeEffectiveStress"
+        number_of_elements="1"
+        default_values="1" >
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      <IntVectorProperty
+         name="ModelBounds"
+         command="SetModelBounds"
+         number_of_elements="6"
+         default_values="-10 10 -10 10 -10 10" >
+      </IntVectorProperty>
+      <IntVectorProperty
+         name="SampleDimensions"
+         command="SetSampleDimensions"
+         number_of_elements="3"
+         default_values="6 6 6" >
+      </IntVectorProperty>
+   </SourceProxy>
+  </ProxyGroup> 
+</ServerManagerConfiguration>

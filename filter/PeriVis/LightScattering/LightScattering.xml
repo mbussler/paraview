@@ -1,0 +1,74 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="LightScattering" class="vtkLightScattering" label="LightScattering">
+      <Documentation
+          long_help="Calculate light scattering in Peridynamic datasets"
+          short_help="LightScattering">
+      </Documentation>
+      <InputProperty
+          name="Input"
+          command="SetInputConnection">
+          <ProxyGroupDomain name="groups">
+            <Group name="sources" />
+            <Group name="filters" />
+          </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <Documentation>
+          This property specifies the input to the filter.
+        </Documentation>
+      </InputProperty>
+
+      <Property name="Refresh" command="Modified" panel_widget="command_button"/>
+
+      <IntVectorProperty command="SetResetIntensity"
+                          default_values="0"
+                          name="ResetIntensity"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Reset Intensity array</Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetInitialSeed"
+                          default_values="1"
+                          name="InitialSeed"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Reset Intensity array</Documentation>
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty name="Diffusion"
+                            command="SetDiffusion"
+                            default_values="0.1"
+                            number_of_elements="1" />
+
+      <DoubleVectorProperty name="Stepsize"
+                            command="SetStepsize"
+                            default_values="0.01"
+                            number_of_elements="1" />
+                            
+      <IntVectorProperty    name="Iterations"
+                            command="SetIterations"
+                            default_values="5"
+                            number_of_elements="1" >
+        <IntRangeDomain min="1"
+                        max="1000"
+                        name="range" />
+      </IntVectorProperty>
+
+      <IntVectorProperty    name="SeedEvery"
+                            command="SetSeedEvery"
+                            default_values="0"
+                            number_of_elements="1" />
+
+      <IntVectorProperty    name="SeedParticleStride"
+                            command="SetSeedParticleStride"
+                            default_values="100"
+                            number_of_elements="1" />
+                            
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

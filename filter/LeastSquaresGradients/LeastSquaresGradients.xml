@@ -1,0 +1,57 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="LeastSquaresGradients" class="vtkLeastSquaresGradients" label="LeastSquaresGradients">
+      <Documentation
+         long_help="Calculate gradients with least squares"
+         short_help="Least Squares Gradients">
+      </Documentation>
+
+      <InputProperty
+         name="Input"
+         command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPointSet"/>
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="point"
+                  name="input_scalars"
+                  number_of_components="1" />
+        <Documentation>
+            Estimate gradients on point set using least squares.
+        </Documentation>
+      </InputProperty>
+      
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            default_values="0"
+                            label="Scalar Array"
+                            name="SelectInputScalars"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Scalars"
+                         input_domain_name="input_scalars" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the scalar array.</Documentation>
+      </StringVectorProperty>   
+     
+      <DoubleVectorProperty command="SetRadius"
+                            default_values="1.0"
+                            name="Radius"
+                            number_of_elements="1">
+        <Documentation>Set the radius for including neighbors in least squares gradient estimation</Documentation>
+      </DoubleVectorProperty>
+      
+      </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

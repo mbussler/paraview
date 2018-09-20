@@ -1,0 +1,131 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="MichelLevy" class="vtkMichelLevy" label="MichelLevy">
+      <Documentation
+          long_help="Calculate and expose Michel-Lévy birefringence pattern"
+          short_help="Michel-Levy">
+      </Documentation>
+      <InputProperty
+          name="Input"
+          command="SetInputConnection">
+          <ProxyGroupDomain name="groups">
+            <Group name="sources" />
+            <Group name="filters" />
+          </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet" />
+        </DataTypeDomain>
+        <InputArrayDomain name="input_array1" attribute_type="point"/>
+        <Documentation>
+          This property specifies the input to the Michel-Lévy filter.
+        </Documentation>
+      </InputProperty>
+
+      <StringVectorProperty
+          name="SelectInputTensors"
+          command="SetInputArrayToProcess"
+          number_of_elements="5"
+          element_types="0 0 0 0 2"
+          label="Tensors"
+          >
+        <ArrayListDomain name="array_list" attribute_type="Tensors"
+            input_domain_name="input_array1">
+          <RequiredProperties>
+            <Property name="Input" function="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>
+                This property indicates the name of the tensor array on which to operate.
+        </Documentation>
+      </StringVectorProperty>
+    
+      <DoubleVectorProperty command="SetAnalyzerAngle"
+                            default_values="90.0"
+                            name="AnalyzerAngle"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="180.0"
+                            min="0.0"
+                            name="range" />
+        <Documentation>Set the angle between the polarizer and the analyzer</Documentation>
+      </DoubleVectorProperty>
+
+      <DoubleVectorProperty command="SetObjectAngle"
+                            default_values="0.0"
+                            name="ObjectAngle"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="90.0"
+                            min="-90.0"
+                            name="range" />
+        <Documentation>Set the angle between the polarizer and the objects max. principal stress direction</Documentation>
+      </DoubleVectorProperty>
+
+      <DoubleVectorProperty command="SetThickness"
+                            default_values="1.0"
+                            name="Thickness"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="100.0"
+                            min="0.0"
+                            name="range" />
+        <Documentation>Set the angle between the polarizer and the objects max. principal stress direction</Documentation>
+      </DoubleVectorProperty>
+    
+      <DoubleVectorProperty command="SetFringeValue"
+                            default_values="1.0"
+                            name="FringeValue"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="100.0"
+                            min="0.0"
+                            name="range" />
+        <Documentation>Set the angle between the polarizer and the objects max. principal stress direction</Documentation>
+      </DoubleVectorProperty>
+
+      <IntVectorProperty command="SetLightfield"
+                          default_values="0"
+                          name="Lightfield"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Specify whether to use lightfield polarization</Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetMonochromatic"
+                          default_values="0"
+                          name="Monochromatic"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Specify whether only light of a single wave length is shown</Documentation>
+      </IntVectorProperty>
+    
+      <DoubleVectorProperty command="SetWavelength"
+                            default_values="380.0"
+                            name="Wavelength"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="780.0"
+                            min="380.0"
+                            name="range" />
+        <Documentation>Set the wavelength for monochromatic light</Documentation>
+      </DoubleVectorProperty>
+      
+      <DoubleVectorProperty command="SetIntensity"
+                            default_values="1.0"
+                            name="Intensity"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="10.0"
+                            min="0.001"
+                            name="range" />
+        <Documentation>Set the intensity for the monochromatic light source</Documentation>
+      </DoubleVectorProperty>
+      <DoubleVectorProperty command="SetGamma"
+                            default_values="2.2"
+                            name="Gamma"
+                            number_of_elements="1">
+        <DoubleRangeDomain  max="10.0"
+                            min="0.001"
+                            name="range" />
+        <Documentation>Set the gamma value for color conversion</Documentation>
+      </DoubleVectorProperty>
+
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

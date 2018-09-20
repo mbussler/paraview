@@ -1,0 +1,83 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeGrow" class="vtkRidgeGrow" label="RidgeGrow">
+      <Documentation
+         long_help="Grow ridge by compare with reference ridge"
+         short_help="Grow temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Current Ridge"
+                     command="SetInputConnection"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type1">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        Ridge grow plugin combines temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <InputProperty name="Reference Ridge"
+                     command="SetInputConnection"
+                     port_index="1">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type2">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        Ridge grow plugin combines temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+      
+      <IntVectorProperty name="ResetOnTimestep"
+                         number_of_elements="1"
+                         command="SetResetOnTimestep"
+                         default_values="0" >
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty
+          name="MinDistance"
+          command="SetMinDistance"
+          number_of_elements="1"
+          default_values="1">
+      </DoubleVectorProperty>   
+
+      <IntVectorProperty name="ClearCellGrowth"
+                         command="SetClearCellGrowth"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+      <IntVectorProperty
+                           name="TargetDistanceMethod"
+                           label="TargetDistanceMethod"
+                           number_of_elements="1"
+                           command="SetTargetDistanceMethod"
+                           default_values="1" >
+            <EnumerationDomain name="enum">
+               <Entry value="0" text="Point-to-Point" />
+               <Entry value="1" text="Point-to-Cell" />
+            </EnumerationDomain>
+            <Documentation>
+
+            </Documentation>
+         </IntVectorProperty>
+      
+      <OutputPort name="GrowRidge" index="0" id="port0" />
+      <OutputPort name="GrowFragment" index="1" id="port1"/>
+      <OutputPort name="PrevGrowRidge" index="2" id="port2"/>
+
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

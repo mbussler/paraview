@@ -1,0 +1,65 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy class="vtkWarpVector2D"
+                 label="Warp By 2D Vector"
+                 name="WarpVector2D">
+      <Documentation long_help="This filter displaces point coordinates along a vector attribute. It is useful for showing mechanical deformation."
+                     short_help="Warp (displace) the geometry with a given vector field.">
+                     The Warp (vector) filter translates the points of the
+                     input dataset using a specified vector array. The vector
+                     array chosen specifies a vector per point in the input.
+                     Each point is translated along its vector by a given scale
+                     factor. This filter operates on polygonal, curvilinear,
+                     and unstructured grid datasets. Because this filter only
+                     changes the positions of the points, the output dataset
+                     type is the same as that of the input.</Documentation>
+      <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPointSet" />
+          <DataType value="vtkImageData" />
+          <DataType value="vtkRectilinearGrid" />
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="point"
+                          name="input_array"
+                          number_of_components="2" />
+        <Documentation>This property specifies the input to the Warp (vector)
+        filter.</Documentation>
+      </InputProperty>
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            label="Vectors"
+                            name="SelectInputVectors"
+                            number_of_elements="5"
+                            panel_visibility="default">
+        <ArrayListDomain attribute_type="Vectors"
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>The value of this property contains the name of the
+        vector array by which to warp the dataset's point
+        coordinates.</Documentation>
+      </StringVectorProperty>
+      <DoubleVectorProperty command="SetScaleFactor"
+                            default_values="1.0"
+                            name="ScaleFactor"
+                            number_of_elements="1"
+                            panel_visibility="default">
+        <DoubleRangeDomain name="range" />
+        <Documentation>Each component of the selected vector array will be
+        multiplied by the value of this property before being used to compute
+        new point coordinates.</Documentation>
+      </DoubleVectorProperty>
+      <!-- End WarpVector -->
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

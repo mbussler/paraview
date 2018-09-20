@@ -1,0 +1,27 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ==================================================================== -->
+    <SourceProxy class="PowerCrust"
+                 name="PowerCrust"
+                 label="Power Crust Algorithm">
+                 
+      <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet" />
+        </DataTypeDomain>
+        <Documentation>This property specifies the dataset on which the 
+        filter will operate.</Documentation>
+      </InputProperty>    
+      
+      <OutputPort name="PowerCrust Surface" index="0" id="port0" />
+      <OutputPort name="Medial Surface" index="1" id="port1"/>
+      <!-- End Clip -->
+    </SourceProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

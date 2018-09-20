@@ -1,0 +1,34 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="TimeGeometryUnstructured" class="vtkTimeGeometryUnstructured" label="TimeGeometryUnstructured">
+      <Documentation
+         long_help="Grow ridge by compare with reference ridge"
+         short_help="Grow temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Input"
+                     command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type1">
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+        <Documentation>
+        Input data
+        </Documentation>
+      </InputProperty>
+
+      <IntVectorProperty name="ResetOnTimestep"
+                         number_of_elements="1"
+                         command="SetResetOnTimestep"
+                         default_values="0" >
+      </IntVectorProperty>
+      
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

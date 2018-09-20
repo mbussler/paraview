@@ -1,0 +1,49 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ==================================================================== -->
+    <SourceProxy class="PolyPointSet"
+                 name="PolyPointSet"
+                 label="PolyPointSet">
+                 
+      <InputProperty command="SetInputConnection"
+                     name="Input"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPointSet" />
+        </DataTypeDomain>
+      </InputProperty>
+      
+      <InputProperty command="SetInputConnection"
+                     name="ClipPolygon"
+                     port_index="1">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+      </InputProperty>
+      
+      <DoubleVectorProperty
+          name="MinClipDistance"
+          command="SetMinClipDistance"
+          number_of_elements="1"
+          default_values="0.0">
+      </DoubleVectorProperty>
+      
+      <DoubleVectorProperty
+          name="MaxClipDistance"
+          command="SetMaxClipDistance"
+          number_of_elements="1"
+          default_values="0.0">
+      </DoubleVectorProperty>
+      
+      <!-- End Clip -->
+    </SourceProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

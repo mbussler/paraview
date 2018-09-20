@@ -1,0 +1,50 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="sources">
+    <SourceProxy name="DatRawTemporalReader" class="DatRawTemporalReader" label="DatRawTemporalReader">
+      <Documentation
+         long_help="Read a .dlt file."
+         short_help="Read a .dlt file.">
+      </Documentation>
+      <StringVectorProperty
+            name="FileName"
+            animateable="0"
+            command="SetFileName"
+            number_of_elements="1">
+        <FileListDomain name="files"/>
+        <Documentation>
+          This property specifies the file name for the PNG reader.
+        </Documentation>
+      </StringVectorProperty>
+
+      <DoubleVectorProperty
+	  name="TimestepValues"
+	  repeatable="1"
+	  information_only="1">
+	<TimeStepsInformationHelper/>
+	<Documentation>
+	  Available timestep values.
+	</Documentation>
+      </DoubleVectorProperty>
+      <IntVectorProperty
+                      name="TensorFormat"
+                      command="SetTensorFormat"
+                      number_of_elements="1"
+                        default_values="1">
+        <EnumerationDomain name="enum">
+          <Entry value="0" text="XX YY ZZ XY XZ YZ"/>
+          <Entry value="1" text="XX YY ZZ XY YZ XZ"/>
+        </EnumerationDomain>
+        <Documentation>
+          Specify the format of tensors in 6-component format.
+        </Documentation>
+       </IntVectorProperty>
+      
+      <Hints>
+        <ReaderFactory 
+	    extensions="dlt"
+            file_description="DatRaw List File Format" />
+     </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
+

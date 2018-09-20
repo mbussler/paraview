@@ -1,0 +1,57 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="NearestNeighborSampling" class="NearestNeighborSampling" label="NearestNeighborSampling">
+      <Documentation
+          long_help="Calculate multi quadratic fit of connected Atoms in Peridynamic datasets"
+          short_help="NearestNeighborSampling">
+      </Documentation>
+      <InputProperty
+          name="Input"
+          command="SetInputConnection">
+          <ProxyGroupDomain name="groups">
+            <Group name="sources" />
+            <Group name="filters" />
+          </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet" />
+        </DataTypeDomain>
+        <InputArrayDomain name="input_array"
+                          attribute_type="point" />
+        <Documentation>
+          This property specifies the input to the filter.
+        </Documentation>
+      </InputProperty>      
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            label="Scalar Array"
+                            name="SelectInputScalars"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Scalars"
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <FieldDataDomain name="field_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </FieldDataDomain>
+        <Documentation>This property lists the name of the scalar array from
+        which to compute the gradient.</Documentation>
+      </StringVectorProperty>      
+
+      <IntVectorProperty
+         name="SampleDimensions"
+         command="SetSampleDimensions"
+         number_of_elements="3"
+         default_values="50 50 50" >
+      </IntVectorProperty>
+
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

@@ -1,0 +1,124 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeGrowStress" class="vtkRidgeGrowStress" label="RidgeGrowStress">
+      <Documentation
+         long_help="Grow ridge by compare with reference ridge"
+         short_help="Grow temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Current Ridge"
+                     command="SetInputConnection"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type1">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        Ridge grow plugin combines temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <InputProperty name="Reference Ridge"
+                     command="SetInputConnection"
+                     port_index="1">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type2">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        Ridge grow plugin combines temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <InputProperty name="Data Domain"
+                     command="SetInputConnection"
+                     port_index="2">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type3">
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+        <InputArrayDomain name="input_array"
+                          attribute_type="point" />
+        <Documentation>
+        Additional data domain to interpolate values on ridge geometry while growing.
+        </Documentation>
+      </InputProperty>
+     
+      
+<!--       
+        <StringVectorProperty name="SelectInputData"
+                            command="SetInputArrayToProcess"
+                            number_of_elements="5"
+                            element_types="0 0 0 0 2"
+                            label="Data Array"
+                            >
+        <ArrayListDomain name="array_list"
+                         attribute_type="Tensor"
+                         >
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the scalar array.</Documentation>
+      </StringVectorProperty>      
+ -->  
+      <StringVectorProperty command="SetArrayName"
+                            name="ArrayName"
+                            number_of_elements="1">
+        <Documentation>
+          This property indicates the name of the scalar array
+          used to compute the range.
+        </Documentation>
+      </StringVectorProperty>
+
+      
+      <IntVectorProperty name="ResetOnTimestep"
+                         number_of_elements="1"
+                         command="SetResetOnTimestep"
+                         default_values="0" >
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty
+          name="MinDistance"
+          command="SetMinDistance"
+          number_of_elements="1"
+          default_values="1">
+      </DoubleVectorProperty>   
+
+      <DoubleVectorProperty
+          name="MaxGrowthRate"
+          command="SetMaxGrowthRate"
+          number_of_elements="1"
+          default_values="10">
+      </DoubleVectorProperty>
+
+      <IntVectorProperty name="ClearCellGrowth"
+                         command="SetClearCellGrowth"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+      <IntVectorProperty name="InterpolateAdditionalData"
+                         command="SetInterpolateAdditionalData"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

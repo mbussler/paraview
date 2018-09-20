@@ -1,0 +1,58 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ==================================================================== -->
+    <SourceProxy class="MeshDifference"
+                 name="MeshDifference"
+                 label="Mesh Difference">
+                 
+      <InputProperty command="SetInputConnection"
+                     name="Input1"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type1">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <InputArrayDomain name="input_array" attribute_type="point"/>
+        <Documentation>This property specifies the dataset on which the Clip
+        filter will operate.</Documentation>
+      </InputProperty>
+     
+      <InputProperty command="SetInputConnection"
+                     name="Input2"
+                     port_index="1">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type2">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <Documentation>This property specifies the dataset on which the Clip
+        filter will operate.</Documentation>
+      </InputProperty>
+
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            default_values="0"
+                            label="Data"
+                            name="SelectInputScalars"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Tensors"
+                         input_domain_name="input_array" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input1" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the scalar array.</Documentation>
+      </StringVectorProperty>  
+      
+      <!-- End Clip -->
+    </SourceProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

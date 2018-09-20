@@ -1,0 +1,29 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="MeshComponents" class="vtkMeshComponents" label="Mesh Components">
+      <Documentation
+         long_help="Label connected components in poly mesh"
+         short_help="Label connected components in poly mesh">
+      </Documentation>
+
+      <InputProperty name="Input"
+                     command="SetInputConnection"
+        >
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        poly mesh input
+        </Documentation>
+      </InputProperty>      
+     
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

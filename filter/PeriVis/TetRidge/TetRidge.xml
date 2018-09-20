@@ -1,0 +1,194 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="TetRidge" class="vtkTetRidge" label="TetRidgeSurfaceGenerator">
+      <Documentation
+         long_help="Ridge plugin calculates height ridges on tetrahedra data and outputs them as isosurfaces"
+         short_help="Height ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty
+         name="Input"
+         command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="point"
+                          name="input_scalars"
+                          number_of_components="1" />
+        <InputArrayDomain attribute_type="point"
+                          name="input_gradient"
+                          number_of_components="3"
+                          optional="1" />
+        <InputArrayDomain attribute_type="point"
+                          name="input_ev"
+                          number_of_components="3"
+                          optional="1" />
+        <InputArrayDomain attribute_type="point"
+                          name="input_ew"
+                          number_of_components="1"
+                          optional="1" />
+        <InputArrayDomain attribute_type="point"
+                          name="input_data"
+                          optional="1" />
+
+        <Documentation>
+	  Ridge plugin calculates height ridges on scalar data and outputs them as isosurfaces.
+	  The parameters are used to fine tune isosurface generation.
+        </Documentation>
+      </InputProperty>
+      
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            default_values="0"
+                            label="Scalar Array"
+                            name="SelectInputScalars"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Scalars"
+                         input_domain_name="input_scalars" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the scalar array.</Documentation>
+      </StringVectorProperty>   
+      
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            default_values="1"
+                            element_types="0 0 0 0 2"
+                            label="Gradient Array"
+                            name="SelectInputGradients"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Vectors"
+                         input_domain_name="input_gradient" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the gradient array.</Documentation>
+      </StringVectorProperty>  
+
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            default_values="2"
+                            element_types="0 0 0 0 2"
+                            label="Eigenvector Array"
+                            name="SelectInputEigenvectors"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Vectors"
+                         input_domain_name="input_ev" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the eigen vector array.</Documentation>
+      </StringVectorProperty>  
+
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            default_values="3"
+                            element_types="0 0 0 0 2"
+                            label="Eigenvalues Array"
+                            name="SelectInputEigenvalues"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Scalars"
+                         input_domain_name="input_ew" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of the eigen value array.</Documentation>
+      </StringVectorProperty>      
+
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            default_values="4"
+                            element_types="0 0 0 0 2"
+                            label="Additional Data Array"
+                            name="SelectAdditionalData"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Tensor"
+                         input_domain_name="input_data" 
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <Documentation>This property lists the name of additional data value array.</Documentation>
+      </StringVectorProperty>     
+      
+      <IntVectorProperty name="ComputeValley"
+                         command="SetValley"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+
+      <IntVectorProperty name="StrictFilter"
+                         command="SetStrictFilter"
+                         number_of_elements="1"
+                         default_values="1">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty
+          name="MergeTolerance"
+          command="SetMergeTolerance"
+          number_of_elements="1"
+          default_values="0.001">
+      </DoubleVectorProperty>
+
+      <DoubleVectorProperty
+          name="MinDataValue"
+          command="SetMinDataValue"
+          number_of_elements="1"
+          default_values="-1.0">
+      </DoubleVectorProperty>
+
+      <DoubleVectorProperty
+          name="MaxDataValue"
+          command="SetMaxDataValue"
+          number_of_elements="1"
+          default_values="1.0">
+      </DoubleVectorProperty>
+      
+      <DoubleVectorProperty
+          name="EigenValueThreshold"
+          command="SetEigenValueThreshold"
+          number_of_elements="1"
+          default_values="0.0">
+      </DoubleVectorProperty>
+      
+      <IntVectorProperty
+          name="RegionThreshold"
+          command="SetRegionThreshold"
+          number_of_elements="1"
+          default_values="5">
+          <IntRangeDomain name="range" min="0" max="10000" />
+      </IntVectorProperty>
+      <IntVectorProperty name="Manifold"
+                         command="SetManifold"
+                         number_of_elements="1"
+                         default_values="1">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+
+      <OutputPort name="Ridge Surface" index="0" id="port0" />
+      <OutputPort name="Tetrahedral Grid" index="1" id="port1"/>
+        
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

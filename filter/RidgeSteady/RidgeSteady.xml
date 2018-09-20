@@ -1,0 +1,49 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeSteady" class="vtkRidgeSteady" label="RidgeSteady">
+      <Documentation
+         long_help="Grow ridge by compare with previous ridge"
+         short_help="Grow temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Ridge"
+                     command="SetInputConnection"
+                     port_index="0">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type1">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+        Ridge grow plugin combines temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <IntVectorProperty name="ResetOnTimestep"
+                         number_of_elements="1"
+                         command="SetResetOnTimestep"
+                         default_values="0" >
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty
+          name="MinDistance"
+          command="SetMinDistance"
+          number_of_elements="1"
+          default_values="1">
+      </DoubleVectorProperty>   
+      
+      <IntVectorProperty name="MergeRidges"
+                         command="SetMergeRidges"
+                         number_of_elements="1"
+                         default_values="0">
+        <BooleanDomain name="bool"/>
+      </IntVectorProperty>
+      
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

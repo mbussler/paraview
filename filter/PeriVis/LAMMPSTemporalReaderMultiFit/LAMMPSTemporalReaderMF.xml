@@ -1,0 +1,70 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="sources">
+    <SourceProxy name="LAMMPSTemporalReaderMultiFit" 
+                class="LAMMPSTemporalReaderMF" 
+                label="LAMMPSTemporalReaderMultiFit">
+      <Documentation
+         long_help="Read .LAMMPS file(s)."
+         short_help="Read .LAMMPS file(s).">
+      </Documentation>      
+      <StringVectorProperty animateable="0"
+                            clean_command="RemoveAllFileNames"
+                            command="AddFileName"
+                            name="FileNames"
+                            number_of_elements="0"
+                            panel_visibility="never"
+                            repeat_command="1">
+        <FileListDomain name="files" />
+        <Documentation>The list of files to be read by the reader.</Documentation>
+      </StringVectorProperty>
+      
+      <DoubleVectorProperty
+        name="TimestepValues"
+        repeatable="1"
+        information_only="1">
+          <TimeStepsInformationHelper/>
+          <Documentation>
+            Available timestep values.
+          </Documentation>
+      </DoubleVectorProperty>
+
+      <IntVectorProperty name="SampleDimensions"
+                         command="SetSampleDimensions"
+                         number_of_elements="3"
+                         default_values="50 50 50" >
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetShowLines"
+                          default_values="0"
+                          name="ShowLines"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Specify whether to show lines.</Documentation>
+      </IntVectorProperty>
+      
+      <IntVectorProperty command="SetCalculateBondLength"
+                          default_values="1"
+                          name="CalculateBondLength"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Specify whether to calculate current bond length</Documentation>
+      </IntVectorProperty>
+      
+      <IntVectorProperty command="SetCalculateRefBondLength"
+                          default_values="1"
+                          name="CalculateRefBondLength"
+                          number_of_elements="1" >
+        <BooleanDomain name="bool" />
+        <Documentation>Specify whether to calculate reference bond length</Documentation>
+      </IntVectorProperty>
+
+     
+      <Hints>
+        <ReaderFactory 
+          extensions="LAMMPS"
+          file_description="LAMMPS File Format (MF)" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
+

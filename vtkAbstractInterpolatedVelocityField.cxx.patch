@@ -1,0 +1,45 @@
+diff --git "a/C:\\Users\\bussleml\\AppData\\Local\\Temp\\TortoiseGit\\vtk11A9.tmp\\vtkAbstractInterpolatedVelocityField-ebe9ef7-left.cxx" "b/H:\\src\\ParaView-src\\VTK\\Filters\\FlowPaths\\vtkAbstractInterpolatedVelocityField.cxx"
+index e0881b7..4bf64eb 100644
+--- "a/C:\\Users\\bussleml\\AppData\\Local\\Temp\\TortoiseGit\\vtk11A9.tmp\\vtkAbstractInterpolatedVelocityField-ebe9ef7-left.cxx"
++++ "b/H:\\src\\ParaView-src\\VTK\\Filters\\FlowPaths\\vtkAbstractInterpolatedVelocityField.cxx"
+@@ -54,6 +54,10 @@ vtkAbstractInterpolatedVelocityField::vtkAbstractInterpolatedVelocityField()
+ 
+   this->Cell     = vtkGenericCell::New();
+   this->GenCell  = vtkGenericCell::New();
++
++  this->lastStepDirection[0] = 0.0;
++  this->lastStepDirection[1] = 0.0;
++  this->lastStepDirection[2] = 0.0;
+ }
+ 
+ //---------------------------------------------------------------------------
+@@ -132,7 +136,14 @@ int vtkAbstractInterpolatedVelocityField::FunctionValues
+       for ( j = 0; j < numPts; j ++ )
+         {
+         id = this->GenCell->PointIds->GetId( j );
++
++        // flip vector direction if against main direction
+         vectors->GetTuple( id, vec );
++        if( vtkMath::Dot( vec, this->lastStepDirection) < 0)
++        {
++            vtkMath::MultiplyScalar(vec, -1.0);
++        }
++
+         for ( i = 0; i < 3; i ++ )
+           {
+           f[i] +=  vec[i] * this->Weights[j];
+@@ -415,6 +426,14 @@ int vtkAbstractInterpolatedVelocityField::GetLastLocalCoordinates( double pcoord
+ }
+ 
+ //----------------------------------------------------------------------------
++void vtkAbstractInterpolatedVelocityField::SetLastDirection( double dir[3])
++{
++    this->lastStepDirection[0] = dir[0];
++    this->lastStepDirection[1] = dir[1];
++    this->lastStepDirection[2] = dir[2];
++}
++
++//----------------------------------------------------------------------------
+ void vtkAbstractInterpolatedVelocityField::FastCompute
+   ( vtkDataArray * vectors, double f[3] )
+ {

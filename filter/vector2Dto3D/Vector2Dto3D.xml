@@ -1,0 +1,47 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="Vector2Dto3D" class="vtkVector2Dto3D" label="Vector2Dto3D">
+    <Documentation
+        long_help="Extend 2D Vector by third component"
+        short_help="2D Vector to 3D">
+    </Documentation>
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet" />
+      </DataTypeDomain>
+      <InputArrayDomain name="input_array1" attribute_type="point"
+            number_of_components="2" />
+      <Documentation>
+        This property specifies the input to the Vector2Dto3D filter.
+      </Documentation>
+    </InputProperty>
+
+    <StringVectorProperty
+        name="SelectInputVectors"
+        command="SetInputArrayToProcess"
+        number_of_elements="5"
+        element_types="0 0 0 0 2"
+        label="2DVectors"
+        >
+      <ArrayListDomain name="array_list" attribute_type="Vectors"
+          input_domain_name="input_array1">
+        <RequiredProperties>
+          <Property name="Input" function="Input" />
+        </RequiredProperties>
+      </ArrayListDomain>
+      <Documentation>
+              This property indicates the name of the 2D vector array to extend
+      </Documentation>
+    </StringVectorProperty>
+    
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

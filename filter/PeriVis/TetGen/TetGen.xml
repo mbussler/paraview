@@ -1,0 +1,30 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="TetGen" class="vtkTetGen" label="TetGen">
+      <Documentation
+         long_help="Create delaunay triangulation using the TetGen library"
+         short_help="TetLib triangulation">
+      </Documentation>
+
+      <InputProperty
+         name="Input"
+         command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+        Generate Delaunay Triangulation.
+        </Documentation>
+      </InputProperty>
+    
+      </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

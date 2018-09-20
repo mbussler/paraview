@@ -1,0 +1,47 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeMerge" class="vtkRidgeMerge" label="RidgeMerge">
+      <Documentation
+         long_help="Merge temporal isosurface meshes resulting from ridge computation"
+         short_help="Merge temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Input"
+                     command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+	  Ridge merge plugin merges temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <IntVectorProperty name="MergeRange"
+                         label="Merge Range"
+                         number_of_elements="1"
+                         command="SetMergeRange"
+                         default_values="2" >
+      </IntVectorProperty>
+      <IntVectorProperty name="StartTimestep"
+                         number_of_elements="1"
+                         command="SetStartTimestep"
+                         default_values="-1" >
+      </IntVectorProperty>
+      <DoubleVectorProperty
+          name="MinDistance"
+          command="SetMinDistance"
+          number_of_elements="1"
+          default_values="1">
+      </DoubleVectorProperty>   
+      
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

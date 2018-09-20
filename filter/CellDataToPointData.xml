@@ -1,0 +1,46 @@
+    <SourceProxy class="vtkPCellDataToPointData"
+                 label="Cell Data to Point Data"
+                 name="CellDataToPointData">
+      <Documentation long_help="Create point attributes by averaging cell attributes."
+                     short_help="Convert cell data to point data.">The Cell
+                     Data to Point Data filter averages the values of the cell
+                     attributes of the cells surrounding a point to compute
+                     point attributes. The Cell Data to Point Data filter
+                     operates on any type of data set, and the output data set
+                     is of the same type as the input.</Documentation>
+      <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet" />
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="cell"
+                          name="input_array" />
+        <Documentation>This property specifies the input to the Cell Data to
+        Point Data filter.</Documentation>
+      </InputProperty>
+      <IntVectorProperty command="SetPassCellData"
+                         default_values="0"
+                         name="PassCellData"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If this property is set to 1, then the input cell data
+        is passed through to the output; otherwise, only the generated point
+        data will be available in the output.</Documentation>
+      </IntVectorProperty>
+      <IntVectorProperty command="SetPieceInvariant"
+                         default_values="0"
+                         name="PieceInvariant"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If the value of this property is set to 1, this filter
+        will request ghost levels so that the values at boundary points match
+        across processes. NOTE: Enabling this option might cause multiple
+        executions of the data source because more information is needed to
+        remove internal surfaces.</Documentation>
+      </IntVectorProperty>
+      <!-- End CellDataToPointData -->
+    </SourceProxy>

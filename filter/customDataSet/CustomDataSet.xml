@@ -1,0 +1,26 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="CustomDataSet" class="vtkCustomDataSet" label="CustomDataSet">
+    <Documentation
+        long_help="Convert to CustomDataSet"
+        short_help="CustomDataSet">
+    </Documentation>
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet" />
+      </DataTypeDomain>
+      <Documentation>
+        This property specifies the input to the CustomDataSet filter.
+      </Documentation>
+    </InputProperty>
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

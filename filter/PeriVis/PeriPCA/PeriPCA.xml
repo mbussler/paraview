@@ -1,0 +1,27 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="PeriPCA" class="PeriPCA" label="PeriPCA">
+      <Documentation
+          long_help="Calculate PCA of connected Atoms in Peridynamic datasets"
+          short_help="PeriPCA">
+      </Documentation>
+      <InputProperty
+          name="Input"
+          command="SetInputConnection">
+          <ProxyGroupDomain name="groups">
+            <Group name="sources" />
+            <Group name="filters" />
+          </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <Documentation>
+          This property specifies the input to the filter.
+        </Documentation>
+      </InputProperty>
+                           
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

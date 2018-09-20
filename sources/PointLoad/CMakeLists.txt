@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+
+FIND_PACKAGE(ParaView REQUIRED)
+INCLUDE(${PARAVIEW_USE_FILE})
+
+ADD_PARAVIEW_PLUGIN(PointLoad "1.0"
+  SERVER_MANAGER_XML PointLoad.xml)

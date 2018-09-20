@@ -1,0 +1,40 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="TetTrimSurface" class="vtkTetTrimSurface" label="TetTrimSurface">
+      <Documentation
+         long_help="trim surface cells of tetrahedral grid"
+         short_help="Tetrahedral Surface Trim">
+      </Documentation>
+
+      <InputProperty
+         name="Input"
+         command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+        <InputArrayDomain attribute_type="point"
+                  name="input_scalars"
+                  number_of_components="1" />
+        <Documentation>
+        Trim surface cells of tetrahedral grid
+        </Documentation>
+      </InputProperty>
+      
+      <IntVectorProperty
+          name="TrimDepth"
+          command="SetTrimDepth"
+          number_of_elements="1"
+          default_values="1">
+      </IntVectorProperty>
+      
+      </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

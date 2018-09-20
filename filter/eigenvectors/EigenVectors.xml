@@ -1,0 +1,111 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="EigenVectors" class="vtkEigenVectors" label="Eigen Vectors">
+    <Documentation
+        long_help="Calculate and expose Eigen vectors"
+        short_help="Eigen vectors">
+    </Documentation>
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet" />
+      </DataTypeDomain>
+      <InputArrayDomain name="input_array1" attribute_type="point" />
+      <InputArrayDomain name="input_array2" attribute_type="point"
+            number_of_components="1" optional="1" />
+      <Documentation>
+        This property specifies the input to the Glyph filter.
+      </Documentation>
+    </InputProperty>
+
+    <StringVectorProperty
+        name="SelectInputTensors"
+        command="SetInputArrayToProcess"
+        number_of_elements="5"
+        element_types="0 0 0 0 2"
+        label="Tensors"
+        >
+      <ArrayListDomain name="array_list" attribute_type="Tensors"
+          input_domain_name="input_array1">
+        <RequiredProperties>
+          <Property name="Input" function="Input" />
+        </RequiredProperties>
+      </ArrayListDomain>
+      <Documentation>
+              This property indicates the name of the tensor array on which to operate.
+      </Documentation>
+    </StringVectorProperty>
+    
+    <StringVectorProperty
+        name="SelectInputScalars"
+        command="SetInputArrayToProcess"
+        number_of_elements="5"
+        element_types="0 0 0 0 2"
+        default_values="1"
+        label="Scalars"
+        >
+           <!-- default_values=1 is important to set here and not in Tensors
+                previously. Omitting the setting here would mess up changed
+                tensor input being recognized as tensor input and not as
+                scalar input and vice versa. -->
+      <ArrayListDomain name="array_list" attribute_type="Scalars"
+          input_domain_name="input_array2">
+        <RequiredProperties>
+          <Property name="Input" function="Input" />
+        </RequiredProperties>
+      </ArrayListDomain>
+      <Documentation>
+        This property indicates the name of the scalar array to use for coloring
+      </Documentation>
+    </StringVectorProperty>
+
+    <IntVectorProperty
+                    name="EigenvalueMethod"
+                    command="SetEigenvalueMethod"
+                    number_of_elements="1"
+                    default_values="0">
+    <EnumerationDomain name="enum">
+      <Entry value="0" text="Linalg"/>
+      <Entry value="1" text="Eigen"/>
+      <Entry value="2" text="Paraview"/>
+    </EnumerationDomain>
+    <Documentation>
+      This property indicates which method will be used to calculate Eigenvalues.
+    </Documentation>
+      </IntVectorProperty>
+    
+    <IntVectorProperty command="SetOutput3EV"
+                        default_values="1"
+                        name="Output3EV"
+                        number_of_elements="1" >
+      <BooleanDomain name="bool" />
+      <Documentation>Specify whether to always output 3 EigenVectors. For 2D Tensors, the third EW will always be 1.</Documentation>
+    
+    </IntVectorProperty>
+
+    <IntVectorProperty command="SetFixEVs"
+                        default_values="0"
+                        name="FixEVs"
+                        number_of_elements="1" >
+      <BooleanDomain name="bool" />
+      <Documentation>Fix sign of first component of EVs</Documentation>
+    </IntVectorProperty>
+
+    <IntVectorProperty command="SetAnisotrophyMeasure"
+                        default_values="0"
+                        name="AnisotrophyMeasure"
+                        number_of_elements="1" >
+      <BooleanDomain name="bool" />
+      <Documentation>Calculate Anisotrophy Measure</Documentation>
+    </IntVectorProperty>
+
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

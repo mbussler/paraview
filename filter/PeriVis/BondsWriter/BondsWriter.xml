@@ -1,0 +1,45 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="writers">
+    <!-- ==================================================================== -->
+    <WriterProxy name="BondsWriter"
+                 label="BondsWriter"
+                class="BondsWriter" >
+
+     <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+      </InputProperty>
+
+      <StringVectorProperty
+            name="FileName"
+            animateable="0"
+            command="SetFileName"
+            number_of_elements="1">
+        <FileListDomain name="files"/>
+        <Documentation>
+          This property specifies the file name for the Bonds writer.
+        </Documentation>
+      </StringVectorProperty>
+      <IntVectorProperty command="SetPrecision"
+                         default_values="5"
+                         name="Precision"
+                         number_of_elements="1">
+        <IntRangeDomain min="0"
+                        name="range" />
+      </IntVectorProperty>
+
+      <Hints>
+        <WriterFactory extensions="Bonds"
+                   file_description="Bonds Files" />
+      </Hints>
+      <!-- End of XMLPolyDataWriter -->
+    </WriterProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

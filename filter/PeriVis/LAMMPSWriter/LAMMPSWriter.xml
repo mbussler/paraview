@@ -1,0 +1,63 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="writers">
+    <!-- ==================================================================== -->
+    <WriterProxy name="LAMMPSWriter"
+                 label="LAMMPS Writer"
+                class="LAMMPSWriter" >
+
+     <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain composite_data_supported="0"
+                        name="input_type">
+          <DataType value="vtkPointSet" />
+        </DataTypeDomain>
+      </InputProperty>
+      <StringVectorProperty
+            name="FileName"
+            animateable="0"
+            command="SetFileName"
+            number_of_elements="1">
+        <FileListDomain name="files"/>
+        <Documentation>
+          This property specifies the file name for the LAMMPS reader.
+        </Documentation>
+      </StringVectorProperty>
+      <IntVectorProperty command="SetPrecision"
+                         default_values="5"
+                         name="Precision"
+                         number_of_elements="1">
+        <IntRangeDomain min="0"
+                        name="range" />
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetBondType"
+                         default_values="1"
+                         name="BondType"
+                         number_of_elements="1">
+      </IntVectorProperty>
+
+      <DoubleVectorProperty command="SetVolume"
+                         default_values="1"
+                         name="Volume"
+                         number_of_elements="1">
+      </DoubleVectorProperty>
+
+      <DoubleVectorProperty command="SetDichte"
+                         default_values="1"
+                         name="Dichte"
+                         number_of_elements="1">
+      </DoubleVectorProperty>
+
+      <Hints>
+        <WriterFactory extensions="LAMMPS"
+                   file_description="LAMMPS Files" />
+      </Hints>
+      <!-- End of XMLPolyDataWriter -->
+    </WriterProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

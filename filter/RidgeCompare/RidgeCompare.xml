@@ -1,0 +1,47 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeCompare" class="vtkRidgeCompare" label="RidgeComparison">
+      <Documentation
+         long_help="Compare temporal isosurface meshes resulting from ridge computation"
+         short_help="Compare temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Input"
+                     command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData"/>
+        </DataTypeDomain>
+        <Documentation>
+	  Ridge compare plugin compares temporal height ridges and outputs the distance between them.
+        </Documentation>
+      </InputProperty>
+
+      <IntVectorProperty
+                           name="TargetDistanceMethod"
+                           label="TargetDistanceMethod"
+                           number_of_elements="1"
+                           command="SetTargetDistanceMethod"
+                           default_values="1" >
+            <EnumerationDomain name="enum">
+               <Entry value="0" text="Point-to-Point" />
+               <Entry value="1" text="Point-to-Cell" />
+            </EnumerationDomain>
+            <Documentation>
+
+            </Documentation>
+         </IntVectorProperty>
+         
+      <OutputPort name="Ridge Surface" index="0" id="port0" />
+      <OutputPort name="Reference" index="1" id="port1"/>
+
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

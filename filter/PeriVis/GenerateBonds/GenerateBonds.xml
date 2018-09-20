@@ -1,0 +1,32 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ==================================================================== -->
+    <SourceProxy class="GenerateBonds"
+                 name="GenerateBonds"
+                 label="GenerateBonds">
+                 
+      <InputProperty command="SetInputConnection"
+                     name="Input">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <Documentation>This property specifies the dataset on which the Clip
+        filter will operate.</Documentation>
+      </InputProperty>
+
+      <DoubleVectorProperty
+          name="NeighborhoodSize"
+          command="SetNeighborhoodSize"
+          number_of_elements="1"
+          default_values="0.1">
+      </DoubleVectorProperty>
+      
+      <!-- End Clip -->
+    </SourceProxy>
+    <!-- ==================================================================== -->
+     </ProxyGroup>
+</ServerManagerConfiguration>

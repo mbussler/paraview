@@ -1,0 +1,98 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="VectorCalc" class="vtkVectorCalc" label="VectorCalc">
+    <Documentation
+        long_help="Various functions on vector fields"
+        short_help="Vector Calculus">
+    </Documentation>
+    <InputProperty
+        name="Input"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources" />
+          <Group name="filters" />
+        </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet" />
+      </DataTypeDomain>
+      <InputArrayDomain name="input_array1" attribute_type="point"
+            number_of_components="9" />
+      <InputArrayDomain name="input_array2" attribute_type="point"
+            number_of_components="1" optional="1" />
+      <Documentation>
+        This property specifies the input to the VectorCalc filter.
+      </Documentation>
+    </InputProperty>
+
+    <StringVectorProperty
+        name="SelectInputTensors"
+        command="SetInputArrayToProcess"
+        number_of_elements="5"
+        element_types="0 0 0 0 2"
+        label="Jacobian"
+        >
+      <ArrayListDomain name="array_list" attribute_type="Tensors"
+          input_domain_name="input_array1">
+        <RequiredProperties>
+          <Property name="Input" function="Input" />
+        </RequiredProperties>
+      </ArrayListDomain>
+      <Documentation>
+              This property indicates the name of the tensor array on which to operate.
+      </Documentation>
+    </StringVectorProperty>
+    
+    <StringVectorProperty
+        name="SelectInputScalars"
+        command="SetInputArrayToProcess"
+        number_of_elements="5"
+        element_types="0 0 0 0 2"
+        default_values="1"
+        label="Scalars"
+        >
+           <!-- default_values=1 is important to set here and not in Tensors
+                previously. Omitting the setting here would mess up changed
+                tensor input being recognized as tensor input and not as
+                scalar input and vice versa. -->
+      <ArrayListDomain name="array_list" attribute_type="Scalars"
+          input_domain_name="input_array2">
+        <RequiredProperties>
+          <Property name="Input" function="Input" />
+        </RequiredProperties>
+      </ArrayListDomain>
+      <Documentation>
+        This property indicates the name of the scalar array to use for coloring
+      </Documentation>
+    </StringVectorProperty>
+
+    <IntVectorProperty
+        name="Function"
+        command="SetFunction"
+        >
+      <EnumerationDomain>
+        <Entry value="0" text="Magnitude" />
+        <Entry value="1" text="Divergence" />
+        <Entry value="2" text="Mean Direction" />
+      </EnumerationDomain>
+      <Documentation>
+        Select function to be calculated on input data
+      </Documentation>
+    </IntVectorProperty>
+    
+    <IntVectorProperty
+        name="AbsoluteValue"
+        command="SetAbsoluteValue"
+        number_of_elements="1"
+        default_values="0"
+        >
+      <BooleanDomain name="bool" />
+      <Documentation>
+        Calculate absolute value of result
+      </Documentation>
+    </IntVectorProperty>
+
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

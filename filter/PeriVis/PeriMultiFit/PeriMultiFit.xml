@@ -1,0 +1,101 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="PeriMultiFit" class="PeriMultiFit" label="PeriMultiFit">
+      <Documentation
+          long_help="Calculate multi quadratic fit of connected Atoms in Peridynamic datasets"
+          short_help="PeriMultiFit">
+      </Documentation>
+      <InputProperty
+          name="Input"
+          command="SetInputConnection">
+          <ProxyGroupDomain name="groups">
+            <Group name="sources" />
+            <Group name="filters" />
+          </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkPolyData" />
+        </DataTypeDomain>
+        <InputArrayDomain name="input_array" />
+        <Documentation>
+          This property specifies the input to the filter.
+        </Documentation>
+      </InputProperty>      
+      <StringVectorProperty command="SetInputArrayToProcess"
+                            element_types="0 0 0 0 2"
+                            label="Scalar Array"
+                            name="SelectInputScalars"
+                            number_of_elements="5">
+        <ArrayListDomain attribute_type="Scalars"
+                         name="array_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </ArrayListDomain>
+        <FieldDataDomain name="field_list">
+          <RequiredProperties>
+            <Property function="Input"
+                      name="Input" />
+          </RequiredProperties>
+        </FieldDataDomain>
+        <Documentation>This property lists the name of the scalar array from
+        which to compute the gradient.</Documentation>
+      </StringVectorProperty>      
+      <IntVectorProperty
+         name="SampleDimensions"
+         command="SetSampleDimensions"
+         number_of_elements="3"
+         default_values="50 50 50" >
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetFitConstantTerm"
+                         default_values="1"
+                         name="FitFitConstantTerm"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If checked, fitting function uses constant term.</Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetFitLinearTerms"
+                         default_values="1"
+                         name="FitLinearTerms"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If checked, fitting function uses linear terms.</Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty command="SetFitHyperbolicTerms"
+                         default_values="1"
+                         name="FitHyperbolicTerms"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If checked, fitting function uses hyperbolic terms.</Documentation>
+      </IntVectorProperty>      
+
+      <IntVectorProperty command="SetFitQuadraticTerms"
+                         default_values="1"
+                         name="FitQuadraticTerms"
+                         number_of_elements="1">
+        <BooleanDomain name="bool" />
+        <Documentation>If checked, fitting function uses quadratic terms.</Documentation>
+      </IntVectorProperty>
+      <!--
+      <IntVectorProperty name="FittingFunction"
+                         command="SetFittingFunction"
+                         number_of_elements="1"
+                         default_values="1">
+        <EnumerationDomain name="enum">
+          <Entry value="0" text="Linear"/>
+          <Entry value="1" text="Quadratic"/>
+          <Entry value="2" text="NoHyperbolic"/>
+        </EnumerationDomain>
+        <Documentation>
+          Specify the order of the function to fit.
+        </Documentation>
+       </IntVectorProperty>
+        -->
+    </SourceProxy>
+
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

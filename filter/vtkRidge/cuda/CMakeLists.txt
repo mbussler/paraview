@@ -1,0 +1,13 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+FIND_PACKAGE(CUDA REQUIRED)
+
+CUDA_INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+#list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_20,code=sm_20)
+
+CUDA_ADD_LIBRARY(cudaRidge SHARED
+	cudaRidge.cu
+	cudaRidge.h
+#        kernels.cu
+	OPTIONS -arch=compute_20
+)

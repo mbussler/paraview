@@ -1,0 +1,44 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <!-- ================================================================== -->
+    <SourceProxy name="RidgeTime" class="vtkRidgeTime" label="RidgeTime">
+      <Documentation
+         long_help="Merge temporal isosurface meshes resulting from ridge computation"
+         short_help="Merge temporal ridge isosurfaces">
+      </Documentation>
+
+      <InputProperty name="Input"
+                     command="SetInputConnection">
+         <!-- clean_command="RemoveAllInputs"> -->
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkUnstructuredGrid"/>
+        </DataTypeDomain>
+        <Documentation>
+	  Ridge merge plugin merges temporal height ridges and outputs the combined ridge.
+        </Documentation>
+      </InputProperty>
+
+      <IntVectorProperty name="MergeRange"
+                         label="Merge Range"
+                         number_of_elements="2"
+                         command="SetMergeRange"
+                         default_values="0 2" >
+      </IntVectorProperty>
+      
+      <DoubleVectorProperty command="SetTranslation"
+                            default_values="0.0 0.0 0.0"
+                            name="Translation"
+                            number_of_elements="3">
+        <Documentation>Specify the transformation by time.</Documentation>
+      </DoubleVectorProperty>
+
+      
+    </SourceProxy>
+    <!-- End Ridge -->
+  </ProxyGroup>
+  <!-- End Filters Group -->
+</ServerManagerConfiguration>

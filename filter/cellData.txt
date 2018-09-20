@@ -1,0 +1,21 @@
+
+# Paraview Filter Definition
+./ParaViewCore/ServerManager/SMApplication/Resources/filters.xml
+
+# PointDataToCellData Filter
+./VTK/Filters/Core/vtkPointDataToCellData.cxx
+./VTK/Filters/Core/vtkPointDataToCellData.h
+
+
+# CellCenter Filter
+
+/home/bussleml/projects/paraview/filter/CellCenter.xml
+./VTK/Interaction/Widgets/Testing/Cxx/TestCellCentersPointPlacer.cxx
+./VTK/Interaction/Widgets/Testing/Data/Baseline/TestCellCentersPointPlacer.png.md5
+./VTK/Interaction/Widgets/vtkCellCentersPointPlacer.cxx
+./VTK/Interaction/Widgets/vtkCellCentersPointPlacer.h
+./VTK/Filters/General/vtkCellCenters.cxx
+./VTK/Filters/General/vtkCellCenters.h
+./VTK/Rendering/Core/vtkCellCenterDepthSort.cxx
+./VTK/Rendering/Core/vtkCellCenterDepthSort.h
+./Qt/Components/Resources/Icons/pqCellCenterData16.png
